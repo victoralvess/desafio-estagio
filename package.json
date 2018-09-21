@@ -2,6 +2,7 @@
   "name": "desafio-estagio",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://victoralvess.github.io/desafio-estagio",
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
