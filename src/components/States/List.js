@@ -11,15 +11,22 @@ class List extends Component {
 
     this.state = {
       states: []
-    };  
-  }
+    }; 
+  }  
 
   /**
    * Gets the list of states and updates the List state.
    */
   async componentDidMount() {
-    const response = await fetch('http://mis-api.dev.br-mediagroup.com/api/v1/states');
-    const states = await response.json();
+    let response, states = [];
+    
+    try {
+      response = await fetch('http://mis-api.dev.br-mediagroup.com/api/v1/states');
+      if (!response.ok) throw Error('Request Error');
+      states = await response.json();
+    } catch (e) {
+      states = []
+    }
 
     this.setState({
       states

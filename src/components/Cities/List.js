@@ -15,8 +15,13 @@ class List extends Component {
   async componentDidUpdate(prevProps) {
     const state = this.props.of;
     if (state !== prevProps.of) {
-      const response = await fetch(`http://mis-api.dev.br-mediagroup.com/api/v1/cities?state_id=${state}`)
-      const cities = await response.json();
+      try {
+        response = await fetch(`http://mis-api.dev.br-mediagroup.com/api/v1/cities?state_id=${state}`);
+        if (!response.ok) throw Error('Request Error');
+        cities = await response.json();
+      } catch (e) {
+        cities = []
+      }
       
       this.setState({
         cities
