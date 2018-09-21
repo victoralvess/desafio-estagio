@@ -18,7 +18,9 @@ class List extends Component {
       let response, cities = [];
 
       try {
-        response = await fetch(`https://desafio-estagio.now.sh/api/v1/cities/${state}`);
+        response = await fetch(`https://desafio-estagio.now.sh/api/v1/cities/${state}`, {
+          mode: 'cors'
+        });
         if (!response.ok) throw Error('Request Error');
         cities = await response.json();
       } catch (e) {
