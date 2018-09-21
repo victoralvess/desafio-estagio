@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
+import StatesList from './components/States/List';
+
 class App extends Component {
   render() {
     return (
       <div>
-        <h1>This is a Test</h1>
+        <StatesList/>
+        {/*<CitiesList/>*/}
       </div>
     );
   }
