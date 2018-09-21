@@ -21,7 +21,7 @@ class List extends Component {
     let response, states = [];
     
     try {
-      response = await fetch('http://mis-api.dev.br-mediagroup.com/api/v1/states');
+      response = await fetch('https://desafio-estagio.now.sh/api/v1/states');
       if (!response.ok) throw Error('Request Error');
       states = await response.json();
     } catch (e) {

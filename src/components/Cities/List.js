@@ -16,9 +16,9 @@ class List extends Component {
     const state = this.props.of;
     if (state !== prevProps.of) {
       let response, cities = [];
-      
+
       try {
-        response = await fetch(`http://mis-api.dev.br-mediagroup.com/api/v1/cities?state_id=${state}`);
+        response = await fetch(`https://desafio-estagio.now.sh/api/v1/cities/${state}`);
         if (!response.ok) throw Error('Request Error');
         cities = await response.json();
       } catch (e) {
