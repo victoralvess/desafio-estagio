@@ -8,11 +8,12 @@ import State from './State';
 class List extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       states: []
-    };
+    };  
   }
+
   /**
    * Gets the list of states and updates the List state.
    */
@@ -26,10 +27,19 @@ class List extends Component {
   }
 
   render() {
+    const { states } = this.state;
+    const { onStateSelection } = this.props;
     return (
       <ul>
         {
-          this.state.states.map(state => <State key={state.id} {...state}/>)
+          states.map(state => (
+              <State
+                key={state.id}
+                {...state}
+                onStateSelection={(id) => onStateSelection(id)}
+              />
+            )
+          )
         }
       </ul>            
     );

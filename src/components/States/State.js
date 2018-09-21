@@ -5,9 +5,9 @@ import React, { Component } from 'react';
  */
 class State extends Component {
   render() {
-    const { name } = this.props;
+    const { id, name, onStateSelection} = this.props;
 
-    return <li>{name}</li>;
+    return <li onClick={onStateSelection(id)}>{name}</li>;
   }
 }
 
