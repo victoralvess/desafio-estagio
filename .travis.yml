@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "node"
+cache:
+  directories:
+    - "node_modules"
+install:
+  - npm install
+script:
+  - npm test  
+after_script:
+  - npm run build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: build
+  on:
+    branch: master
