@@ -33,7 +33,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <div>
           <TitleBar>
             <Menu src={hamburger} onClick={this.toggleList}/>
