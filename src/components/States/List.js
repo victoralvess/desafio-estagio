@@ -4,11 +4,8 @@ import { css } from 'react-emotion';
 // Layout components
 import Ul from '../Layout/Ul';
 import SectionTitle from '../Layout/SectionTitle';
-import LoaderPage from '../Layout/LoaderPage';
 // State List Item
 import State from './State';
-// Assets
-import loading from '../../assets/loading.svg';
 
 /**
  * List of States.
