@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'react-emotion';
 
+// Core components
 import StatesList from './components/States/List';
 import CitiesList from './components/Cities/List';
-
+// Layout components
 import TitleBar from './components/Layout/Header/TitleBar';
 import Menu from './components/Layout/Header/Menu';
 import Title from './components/Layout/Title';
 import Grid from './components/Layout/Grid';
-
+import LoaderPage from './components/Layout/LoaderPage';
+// Assets
 import hamburger from './assets/hamburger.svg';
+import select from './assets/select.svg';
 
 const Main = styled('div')``;
 
@@ -42,12 +45,21 @@ class App extends Component {
           <Main>
             <Grid>
               <StatesList visible={this.state.listVisibility}/>
-              <Route
-                path={`/cities/:stateId`}
-                render={
-                    props => <CitiesList {...props} pointerEvents={!this.state.listVisibility}/>
-                  }
-              />
+							<Switch>
+		            <Route
+		              path={`/cities/:stateId`}
+		              render={
+		                  props => (
+		                    <CitiesList
+		                      {...props}
+		                      pointerEvents={!this.state.listVisibility}
+		                      onLoadItems={() => this.setState({listVisibility: false})}
+		                    />
+		                  )
+		                }
+		            />
+								<Route render={_ => <LoaderPage icon={select}/>}/>
+							</Switch>
             </Grid>
           </Main>
         </div>
