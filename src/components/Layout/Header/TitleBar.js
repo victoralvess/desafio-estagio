@@ -8,8 +8,8 @@ export default styled('header')`
   top: 0;
 
   width: 100%;
-  height: 65px;
+  height: 80px;
 
-  background: #afb9c6;
-  color: #e6ecf4;
+  background: #f9f0a5;
+  color: #5d636b;
 `;
