@@ -1,17 +1,18 @@
+import React from 'react';
 import styled from 'react-emotion';
 
 const Li = styled('li')`
-display: flex;
-align-items: center;
-padding: 1em;
-:hover {
-  background: whitesmoke;
-}
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  :hover {
+    background: whitesmoke;
+  }
 `;
 
 const CityName = styled('span')`
-margin-left: 1em;
-font-size: 1.1em;
+  margin-left: 1em;
+  font-size: 1.1em;
 `;
 
 export default function({name}) {
