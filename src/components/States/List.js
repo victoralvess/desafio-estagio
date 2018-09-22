@@ -37,7 +37,6 @@ class List extends Component {
 
   render() {
     const { states } = this.state;
-    const { onStateSelection } = this.props;
     return (
       <ul>
         {
@@ -45,7 +44,6 @@ class List extends Component {
               <State
                 key={state.id}
                 {...state}
-                onStateSelection={(id) => onStateSelection(id)}
               />
             )
           )

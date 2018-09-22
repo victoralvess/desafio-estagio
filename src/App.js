@@ -1,25 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import StatesList from './components/States/List';
 import CitiesList from './components/Cities/List';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedState: null
-    };
-  }
-
-  render() {
-    return (
+function App() {
+  return (
+    <Router>
       <div>
-        <StatesList onStateSelection={(stateId) => (ev) => this.setState({ selectedState: stateId })}/>
-        <CitiesList of={this.state.selectedState}/>
+        <StatesList/>
+        <Route path={`/cities/:stateId`} component={CitiesList}/>
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;

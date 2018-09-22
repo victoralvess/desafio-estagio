@@ -12,24 +12,33 @@ class List extends Component {
     };
   }
 
-  async componentDidUpdate(prevProps) {
-    const state = this.props.of;
-    if (state !== prevProps.of) {
-      let response, cities = [];
+  async fetchCitiesOf(state) {
+    let response, cities = [];
 
-      try {
-        response = await fetch(`https://desafio-estagio.now.sh/api/v1/cities/${state}`, {
-          mode: 'cors'
-        });
-        if (!response.ok) throw Error('Request Error');
-        cities = await response.json();
-      } catch (e) {
-        cities = []
-      }
-      
-      this.setState({
-        cities
+    try {
+      response = await fetch(`https://desafio-estagio.now.sh/api/v1/cities/${state}`, {
+        mode: 'cors'
       });
+      if (!response.ok) throw Error('Request Error');
+      cities = await response.json();
+    } catch (e) {
+      cities = []
+    }
+    
+    this.setState({
+      cities
+    });
+  }
+
+  componentDidMount() {    
+    let state = this.props.match.params.stateId;
+    this.fetchCitiesOf(state);
+  }
+
+  componentDidUpdate(prevProps) {
+    let state = this.props.match.params.stateId;
+    if (state !== prevProps.match.params.stateId) {
+      this.fetchCitiesOf(state);
     }
   }
 
@@ -43,5 +52,28 @@ class List extends Component {
     );
   }
 }
+/*
+const List = async ({ match }) => {
+  let response, cities = [];
+  let state = match.params.stateId;
+
+  try {
+    response = await fetch(`https://desafio-estagio.now.sh/api/v1/cities/${state}`, {
+      mode: 'cors'
+    });
+    if (!response.ok) throw Error('Request Error');
+    cities = await response.json();
+  } catch (e) {
+    cities = []
+  }
+
+  return (
+    <ul>
+      {
+        cities.map(city => <li key={city.id}>{city.name}</li>)
+      }
+    </ul>
+  )
+}*/
 
 export default List;
