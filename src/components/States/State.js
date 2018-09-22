@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * State list item.
  */
-class State extends Component {
-  render() {
-    const { id, name, onStateSelection} = this.props;
-
-    return <li onClick={onStateSelection(id)}>{name}</li>;
-  }
+function State({ id, name }) {
+  return (
+    <li>
+      <Link to={`/cities/${id}`}>{name}</Link>
+    </li>
+  );
 }
 
 export default State;
