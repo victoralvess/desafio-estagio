@@ -1,18 +1,59 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import styled from 'react-emotion';
 
 import StatesList from './components/States/List';
 import CitiesList from './components/Cities/List';
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <StatesList/>
-        <Route path={`/cities/:stateId`} component={CitiesList}/>
-      </div>
-    </Router>
-  );
+import TitleBar from './components/Layout/Header/TitleBar';
+import Menu from './components/Layout/Header/Menu';
+import Title from './components/Layout/Title';
+import Grid from './components/Layout/Grid';
+
+import hamburger from './assets/hamburger.svg';
+
+const Main = styled('div')``;
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      listVisibility: false
+    }
+
+    this.toggleList = this.toggleList.bind(this);
+  }
+
+  toggleList() {
+    this.setState(prevState => ({
+      listVisibility: !prevState.listVisibility
+    }));
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <TitleBar>
+            <Menu src={hamburger} onClick={this.toggleList}/>
+            <Title>Desafio Estágio</Title>
+          </TitleBar>
+          <Main>
+            <Grid>
+              <StatesList visible={this.state.listVisibility}/>
+              <Route
+                path={`/cities/:stateId`}
+                render={
+                    props => <CitiesList {...props} pointerEvents={!this.state.listVisibility}/>
+                  }
+              />
+            </Grid>
+          </Main>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
