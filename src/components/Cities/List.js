@@ -1,30 +1,8 @@
 import React, { Component } from 'react';
-import styled, {css} from 'react-emotion';
+import { css } from 'react-emotion';
 
 import Ul from '../Layout/Ul';
-
-const Li = styled('li')`
-display: flex;
-align-items: center;
-padding: 1em;
-:hover {
-  background: whitesmoke;
-}
-`;
-
-const CityName = styled('span')`
-margin-left: 1em;
-font-size: 1.1em;
-`;
-
-const CityLi = ({name}) => {
-  return (
-    <Li>
-      <img src="https://png.icons8.com/color/60/000000/pin-2.png" alt={`Ícone de ${name}`} title="Ícone"/>
-      <CityName>{name}</CityName>
-    </Li>
-  );
-}
+import City from './City';
 
 /**
  * List of Cities.
@@ -89,7 +67,7 @@ class List extends Component {
       `}>
         {
           this.state.cities.map(city => (
-            <CityLi key={city.id} name={city.name}/>
+            <City key={city.id} name={city.name}/>
           ))
         }
       </Ul>
