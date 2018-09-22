@@ -78,6 +78,14 @@ class List extends Component {
               <City key={city.id} name={city.name}/>
             ))
           }
+					<a href="https://icons8.com"
+						target="_blank"
+						rel="noopener noreferrer"
+						className={css`
+							margin: 0 0 2em 0;
+							display: block;
+							text-align: center;
+						`}>Icon pack by Icons8</a>
         </Ul>
       );
     }
