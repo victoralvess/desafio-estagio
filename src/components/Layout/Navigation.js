@@ -10,7 +10,7 @@ export default styled('aside')`
   overflow-y: auto;
 
   @media (max-width: 767px) {
-    transform: translateX(${({ visible }) => visible ? '0': '-100%'});
+    transform: translateX(${({ visible, small }) => visible && small ? '0': '-100%'});
     transition: transform 0.5s linear;
     z-index: 1000;
   }

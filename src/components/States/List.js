@@ -36,7 +36,8 @@ class List extends Component {
   // It'll be shown if the data is loading
   get loader() {
     return (
-      <Navigation visible={true}/>
+      // 'small={false}' ensures that the navigation won't be shown on small devices
+      <Navigation visible small={false}/>
     );
   }
 
@@ -47,7 +48,8 @@ class List extends Component {
 
     return (
       // Navigation
-      <Navigation visible={visible}>
+      // 'small' shows that navigation on small devices too
+      <Navigation visible={visible} small>
         {/* Navigation Title */}
         <SectionTitle>Estados</SectionTitle>
         {/* States */}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'react-emotion';
 // Layout components
-import Ul from '../Layout/Ul';
+import ListContainer from './ListContainer';
 import SectionTitle from '../Layout/SectionTitle';
 import LoaderPage from '../Layout/LoaderPage';
 // City List Item
@@ -78,9 +78,11 @@ class List extends Component {
     const { cities } = this.state;
     const { pointerEvents } = this.props;
 		return (
-			<Ul pointerEvents={pointerEvents.toString()}>
+			<ListContainer pointerEvents={pointerEvents.toString()}>
 				<SectionTitle>Cidades</SectionTitle>
-        {cities.map(city => <City key={city.id} name={city.name}/>)}
+        <ul>
+          {cities.map(city => <City key={city.id} name={city.name}/>)}
+        </ul>
 				<a href="https://icons8.com"
 					target="_blank"
 					rel="noopener noreferrer"
@@ -89,7 +91,7 @@ class List extends Component {
 						display: block;
 						text-align: center;
 					`}>Icon pack by Icons8</a>
-      </Ul>
+      </ListContainer>
 		);
 	}
 
