@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { css } from 'react-emotion';
+import styled, { css } from 'react-emotion';
 
 // Layout components
 import Ul from '../Layout/Ul';
@@ -9,27 +9,27 @@ import State from './State';
 
 import Fetcher from '../../utils/Fetcher';
 
+// Adds custom styles to Ul
+const StatesList = styled(Ul)`
+  position: absolute;
+  background: #f7f8fa;
+  width: 80%;
+
+  @media (max-width: 767px) {
+    transform: translateX(${({ visible }) => visible ? '0': '-100%'});
+    transition: transform 0.5s linear;
+    z-index: 1000;
+  }
+
+  @media (min-width: 768px) {
+    position: initial;
+    width: 100%;
+  }
+`;
 /**
  * List of States.
  */
 class List extends Component {
-  listStyle = visible => css`
-    position: absolute;
-    background: #f7f8fa;
-    width: 80%;
-    
-    @media (max-width: 767px) {
-      transform: translateX(${visible===true ? '0': '-100%'});
-      transition: transform 0.5s linear;
-      z-index: 1000;
-    }
-    
-    @media (min-width: 768px) {
-      position: initial;
-      width: 100%;
-    }
-	`;
-	
 	constructor(props) {
     super(props);
 
@@ -65,10 +65,10 @@ class List extends Component {
     const { visible } = this.props;
 
     return (
-      <Ul pointerEvents="true" className={this.listStyle(visible)}>
+      <StatesList pointerEvents="true" visible={visible}>
         <SectionTitle>Estados</SectionTitle>
         {states.map(state => <State key={state.id} {...state}/>)}
-      </Ul>
+      </StatesList>
     );
   }
 
