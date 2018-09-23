@@ -28,6 +28,7 @@ class App extends Component {
     this.toggleList = this.toggleList.bind(this);
   }
 
+  // Shows or hides the side menu on small screens
   toggleList() {
     this.setState(prevState => ({
       listVisibility: !prevState.listVisibility
@@ -38,13 +39,18 @@ class App extends Component {
     return (
       <Router>
         <div>
+          {/* Bar at the top that holds the hamburger menu and the title */}
           <TitleBar>
             <Menu src={hamburger} onClick={this.toggleList}/>
             <Title>Desafio Estágio</Title>
           </TitleBar>
+          {/* The main content goes here */}
           <Main>
+            {/* Grid with 2 columns and 1 row */}
             <Grid>
+              {/* This is the list of states */}
               <StatesList visible={this.state.listVisibility}/>
+              {/* Either renders a list of cities or a loader */}
 							<Switch>
 		            <Route
 		              path={`/cities/:stateId`}
@@ -58,6 +64,7 @@ class App extends Component {
 		                  )
 		                }
 		            />
+                {/* Loader of 1st access */}
 								<Route render={_ => <LoaderPage icon={select}/>}/>
 							</Switch>
             </Grid>
