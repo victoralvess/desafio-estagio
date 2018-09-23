@@ -9,6 +9,8 @@ import City from './City';
 // Assets
 import loading from '../../assets/loading.svg';
 
+import Fetcher from '../../utils/Fetcher';
+
 /**
  * List of Cities.
  */
@@ -23,31 +25,24 @@ class List extends Component {
   }
 
   async fetchCitiesOf(state) {
-			this.props.onLoadItems();
-			this.setState({ isLoading: true });
-      let response, cities = [];
-
-      try {
-        response = await fetch(`https://desafio-estagio.now.sh/api/v1/cities/${state}`, {
-          mode: 'cors'
-        });
-        if (!response.ok) throw Error('Request Error');
-        cities = await response.json();
-      } catch (e) {
-        cities = []
-      }
-      
-      this.setState({
-        cities,
-        isLoading: false
-      });
+    // Closes the menu
+    this.props.onFetch();
+    // Shows the loader
+    this.setState({ isLoading: true });
+    // Request the data
+    const cities = await Fetcher.fetch(`https://desafio-estagio.now.sh/api/v1/cities/${state}`);
+    // Save the data
+    this.setState({
+      cities,
+      isLoading: false
+    });
   }
 
   /**
    * Gets all cities of a state
    */
-  componentDidMount() {    
-    let state = this.props.match.params.stateId;
+  componentDidMount() {
+    const state = this.props.match.params.stateId;
     this.fetchCitiesOf(state);
   }
 
@@ -56,40 +51,49 @@ class List extends Component {
    * @param {*} prevProps 
    */
   componentDidUpdate(prevProps) {
-    let state = this.props.match.params.stateId;
+    const state = this.props.match.params.stateId;
+    // Verifies whether the route changed
     if (state !== prevProps.match.params.stateId) {
       this.fetchCitiesOf(state);
     }
   }
 
+	get loader() {
+		return <LoaderPage icon={loading}/>;
+	}
+
+	get loaded() {
+		const { cities } = this.state;
+		return (
+			<Ul className={css`
+        pointer-events: ${this.props.pointerEvents? 'all': 'none'};
+        overflow-y: ${this.props.pointerEvents? 'auto': 'hidden'}
+      `}>
+				<SectionTitle>Cidades</SectionTitle>
+        {cities.map(city => <City key={city.id} name={city.name}/>)}
+				<a href="https://icons8.com"
+					target="_blank"
+					rel="noopener noreferrer"
+					className={css`
+						margin: 0 0 2em 0;
+						display: block;
+						text-align: center;
+					`}>Icon pack by Icons8</a>
+      </Ul>
+		);
+	}
+
   render() {
+    const { isLoading } = this.state;
     let component;
-    if (this.state.isLoading) {
-      component = <LoaderPage icon={loading}/>
+    // Will return the loader / placeholder if data is loading
+    if (isLoading) {
+      component = this.loader;
     } else {
-      component = (
-        <Ul className={css`
-          pointer-events: ${this.props.pointerEvents? 'all': 'none'};
-          overflow-y: ${this.props.pointerEvents? 'auto': 'hidden'}
-        `}>
-					<SectionTitle>Cidades</SectionTitle>
-          {
-            this.state.cities.map(city => (
-              <City key={city.id} name={city.name}/>
-            ))
-          }
-					<a href="https://icons8.com"
-						target="_blank"
-						rel="noopener noreferrer"
-						className={css`
-							margin: 0 0 2em 0;
-							display: block;
-							text-align: center;
-						`}>Icon pack by Icons8</a>
-        </Ul>
-      );
-    }
-    return component;
+		  component = this.loaded;
+		}
+
+		return component;
   }
 }
 

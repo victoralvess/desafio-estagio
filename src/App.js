@@ -52,8 +52,8 @@ class App extends Component {
 		                  props => (
 		                    <CitiesList
 		                      {...props}
-		                      pointerEvents={!this.state.listVisibility}
-		                      onLoadItems={() => this.setState({listVisibility: false})}
+                          pointerEvents={!this.state.listVisibility}
+                          onFetch={() => this.setState({listVisibility: false})} 
 		                    />
 		                  )
 		                }
