@@ -1,5 +1,8 @@
 import styled from 'react-emotion';
 
+import { main, title } from '../../../styles/colors';
+import { toolbar } from '../../../styles/dimensions';
+
 export default styled('header')`
   display: flex;
   align-items: center;
@@ -8,8 +11,8 @@ export default styled('header')`
   top: 0;
 
   width: 100%;
-  height: 80px;
+  height: ${toolbar.height};
 
-  background: #f9f0a5;
-  color: #5d636b;
+  background: ${main};
+  color: ${title};
 `;
