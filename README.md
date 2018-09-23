@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/victoralvess/desafio-estagio.svg?branch=master)](https://travis-ci.com/victoralvess/desafio-estagio)
 # PROJETO PARA O DESAFIO DE ESTÁGIO
 
 Projeto em React para realizar requisições a uma API com cidades e estados brasileiros.
