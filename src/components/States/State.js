@@ -2,27 +2,27 @@ import React from 'react';
 import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
 
-const StateLi = styled('li')`
-cursor: pointer;
+const Li = styled('li')`
+  cursor: pointer;
 
-&:hover {
-  background: whitesmoke;
-}
+  &:hover {
+    background: whitesmoke;
+  }
 `;
 
 const StyledLink = styled(Link)`
-display: block;
-padding: 2em;
+  display: block;
+  padding: 2em;
 
-color: #444;
+  color: #444;
 
-&:focus, &:hover, &:visited, &:link, &:active {
-  text-decoration: none;
-}
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+  }
 
-&:visited {
-  color: none;
-}
+  &:visited {
+    color: none;
+  }
 `;
 
 /**
@@ -30,9 +30,9 @@ color: #444;
  */
 function State({ id, name }) {
   return (
-    <StateLi>
+    <Li>
       <StyledLink to={`/cities/${id}`}>{name}</StyledLink>
-    </StateLi>
+    </Li>
   );
 }
 
