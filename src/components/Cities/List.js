@@ -8,6 +8,7 @@ import LoaderPage from '../Layout/LoaderPage';
 import City from './City';
 // Assets
 import loading from '../../assets/loading.svg';
+import empty  from '../../assets/empty.svg';
 
 import Fetcher from '../../utils/Fetcher';
 
@@ -60,7 +61,15 @@ class List extends Component {
 
 	get loader() {
 		return <LoaderPage icon={loading}/>;
-	}
+  }
+  
+  get noDataComponent() {
+    return (
+      <LoaderPage icon={empty}>
+        <SectionTitle>Opa! Não achei nenhuma cidade.</SectionTitle>
+      </LoaderPage>
+    );
+  }
 
 	get loaded() {
     const { cities } = this.state;
@@ -82,11 +91,13 @@ class List extends Component {
 	}
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, cities } = this.state;
     let component;
     // Will return the loader / placeholder if data is loading
     if (isLoading) {
       component = this.loader;
+    } else if(cities && cities.length === 0) {
+      component = this.noDataComponent;
     } else {
 		  component = this.loaded;
 		}
