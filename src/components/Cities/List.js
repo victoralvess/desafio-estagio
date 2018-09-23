@@ -59,10 +59,12 @@ class List extends Component {
     }
   }
 
+  // It'll be shown if the data is loading
 	get loader() {
 		return <LoaderPage icon={loading}/>;
   }
   
+  // It'll be shown if the data was not found
   get noDataComponent() {
     return (
       <LoaderPage icon={empty}>
@@ -71,6 +73,7 @@ class List extends Component {
     );
   }
 
+  // It'll be shown if the data is loaded
 	get loaded() {
     const { cities } = this.state;
     const { pointerEvents } = this.props;

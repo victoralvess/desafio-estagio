@@ -51,6 +51,7 @@ class List extends Component {
     });
   }
 
+  // It'll be shown if the data is loading
   get loader() {
     return (
       <div className={css`
@@ -60,6 +61,7 @@ class List extends Component {
     );
   }
 
+  // It'll be shown if the data is loaded
   get loaded() {
     const { states } = this.state;
     const { visible } = this.props;
