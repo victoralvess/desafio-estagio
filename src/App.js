@@ -56,6 +56,8 @@ class App extends Component {
 		              path={`/cities/:stateId`}
 		              render={
 		                  props => (
+                        /* pointerEvents will disable events outside the side menu when it is open */
+                        /* onFetch will close the side menu */
 		                    <CitiesList
 		                      {...props}
                           pointerEvents={!this.state.listVisibility}
