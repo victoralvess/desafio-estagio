@@ -65,7 +65,7 @@ class List extends Component {
     const { visible } = this.props;
 
     return (
-      <Ul className={this.listStyle(visible)}>
+      <Ul pointerEvents="true" className={this.listStyle(visible)}>
         <SectionTitle>Estados</SectionTitle>
         {states.map(state => <State key={state.id} {...state}/>)}
       </Ul>

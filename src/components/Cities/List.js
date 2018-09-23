@@ -63,12 +63,10 @@ class List extends Component {
 	}
 
 	get loaded() {
-		const { cities } = this.state;
+    const { cities } = this.state;
+    const { pointerEvents } = this.props;
 		return (
-			<Ul className={css`
-        pointer-events: ${this.props.pointerEvents? 'all': 'none'};
-        overflow-y: ${this.props.pointerEvents? 'auto': 'hidden'}
-      `}>
+			<Ul pointerEvents={pointerEvents.toString()}>
 				<SectionTitle>Cidades</SectionTitle>
         {cities.map(city => <City key={city.id} name={city.name}/>)}
 				<a href="https://icons8.com"
