@@ -1,31 +1,13 @@
 import React, { Component } from 'react';
-import styled, { css } from 'react-emotion';
 
 // Layout components
-import Ul from '../Layout/Ul';
+import Navigation from '../Layout/Navigation';
 import SectionTitle from '../Layout/SectionTitle';
 // State List Item
 import State from './State';
 
 import Fetcher from '../../utils/Fetcher';
 
-// Adds custom styles to Ul
-const StatesList = styled(Ul)`
-  position: absolute;
-  background: #f7f8fa;
-  width: 80%;
-
-  @media (max-width: 767px) {
-    transform: translateX(${({ visible }) => visible ? '0': '-100%'});
-    transition: transform 0.5s linear;
-    z-index: 1000;
-  }
-
-  @media (min-width: 768px) {
-    position: initial;
-    width: 100%;
-  }
-`;
 /**
  * List of States.
  */
@@ -54,10 +36,7 @@ class List extends Component {
   // It'll be shown if the data is loading
   get loader() {
     return (
-      <div className={css`
-        background:#f7f8fa;
-        height: calc(100vh - 80px);
-      `}></div>
+      <Navigation visible={true}/>
     );
   }
 
@@ -67,10 +46,15 @@ class List extends Component {
     const { visible } = this.props;
 
     return (
-      <StatesList pointerEvents="true" visible={visible}>
+      // Navigation
+      <Navigation visible={visible}>
+        {/* Navigation Title */}
         <SectionTitle>Estados</SectionTitle>
-        {states.map(state => <State key={state.id} {...state}/>)}
-      </StatesList>
+        {/* States */}
+        <ul>        
+          {states.map(state => <State key={state.id} {...state}/>)}
+        </ul>
+      </Navigation>
     );
   }
 

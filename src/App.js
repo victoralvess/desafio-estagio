@@ -41,7 +41,7 @@ class App extends Component {
         <div>
           {/* Bar at the top that holds the hamburger menu and the title */}
           <TitleBar>
-            <Menu src={hamburger} onClick={this.toggleList}/>
+            <Menu src={hamburger} alt="Menu" onClick={this.toggleList}/>
             <Title>Desafio Estágio</Title>
           </TitleBar>
           {/* The main content goes here */}
